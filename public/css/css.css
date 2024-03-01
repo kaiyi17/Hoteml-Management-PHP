@@ -1,0 +1,60 @@
+.navbar .nav-link {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  margin-right: 40px;
+  font-size: 20px;
+  color: white;
+}
+
+.navbar a:hover {
+  text-decoration: none;
+  color: #D96F38;
+}
+
+.navbar-brand img {
+  height: 80px;
+  width: auto;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: auto;
+}
+
+.search-container {
+  max-width: 1320px;
+  margin: auto;
+}
+
+.custom-btn {
+  background-color: black;
+  color: white;
+  border: 2px solid darkgray;
+}
+
+.custom-btn:hover {
+  background-color: black;
+  color: #D96F38;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.card-body {
+  flex: 1;
+}
+
+.footer .social-icons a {
+  color: white;
+  margin: 0 10px;
+  font-size: 1.5rem;
+}
+
+.footer a:hover {
+  text-decoration: none;
+  color: #D96F38;
+}

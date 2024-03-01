@@ -1,0 +1,113 @@
+{% include 'header.html.twig' %}
+
+<main>
+ <div class="container mt-5">
+      <form method="get" action="dashboard.php" class="mb-3">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="input-group">
+              <span class="input-group-text">Search by name</span>
+              <input type="text" name="search_name" class="form-control">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="input-group">
+              <span class="input-group-text">Search by check-in date</span>
+              <input type="date" name="search_check_in_date" class="form-control">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="input-group">
+              <span class="input-group-text">Search by check-out date</span>
+              <input type="date" name="search_check_out_date" class="form-control">
+            </div>
+          </div>
+          <div class="col-md-12 mt-2 d-flex justify-content-end">
+            <button type="submit" class="btn custom-btn justify-content-end">Search</button>
+          </div>
+          <div class="col-md-12 mt-2">
+            <a href="dashboard.php?today=true" class="btn btn btn-outline-secondary">Show Today's Bookings</a>
+            <a href="dashboard.php" class="btn btn btn-outline-secondary">Show All Bookings</a>
+          </div>
+        </div>
+      </form>
+
+      <h2 class="mt-4">Booking Details</h2>
+      {% if bookings is empty %}
+        <div class="alert alert-info">No bookings found!</div>
+      {% endif %}
+
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Check-In Date</th>
+            <th>Check-Out Date</th>
+            <th>Room Number</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for booking in bookings %}
+            <tr>
+              <td>{{ booking.name }}</td>
+              <td>{{ booking.email }}</td>
+              <td>{{ booking.phone }}</td>
+              <td>{{ booking.check_in_date }}</td>
+              <td>{{ booking.check_out_date }}</td>
+              <td>{{ booking.room_number }}</td>
+              <td>
+                <a href="edit.php?id={{ booking.booking_id }}" class="btn btn-outline-primary btn-sm">Edit</a>
+                <a href="#" onclick="confirmDelete({{ booking.booking_id }})" class="btn btn-outline-danger btn-sm">Delete</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+       <!-- Pagination links -->
+      {% if total_pages > 1 %}
+        <nav aria-label="Page navigation example">
+          <ul class="pagination justify-content-center">
+            <li class="page-item {% if current_page <= 1 %}disabled{% endif %}">
+              <a class="page-link" href="?page={{ current_page - 1 }}" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            {% for i in 1..total_pages %}
+              <li class="page-item {% if i == current_page %}active{% endif %}">
+                <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+              </li>
+            {% endfor %}
+            <li class="page-item {% if current_page >= total_pages %}disabled{% endif %}">
+              <a class="page-link" href="?page={{ current_page + 1 }}" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      {% endif %}
+
+</main>
+
+<script>
+      function confirmDelete(id) {
+        if (confirm("Are you sure you want to delete this booking?")) {
+          window.location.href = "delete.php?id=" + id;
+        }
+      }
+</script>
+<script>
+        function confirmDelete(id) {
+          if (confirm("Are you sure you want to delete this booking?")) {
+            window.location.href = "delete.php?id=" + id;
+          }
+        }
+</script>
+
+{% include 'footer.html.twig' %}
+
+</body>
+</html>

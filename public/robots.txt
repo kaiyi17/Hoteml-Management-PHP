@@ -1,0 +1,2 @@
+User-agent: *
+Disallow: /path-you-dont-want-to-be-indexed

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Urban Nest</title>
+    <meta name="description" content="Hotel Booking - Book your stay with us.">
+    <meta name="keywords" content="Hotel,Booking,Stay,Rooms">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ base_url }}/css/css.css" rel="stylesheet">
+</head>
+
+<body>
+ <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid justify-content-center justify-content-lg-between">
+
+      <!-- Logo Only for Smaller Screens -->
+      <a class="navbar-brand d-lg-none" href="#"><img src="{{ base_url }}images/logo-nav.png" alt="Hotel Urban Nest Logo"></a>
+
+      <!-- Toggler -->
+      <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Nav Items -->
+      <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="rooms.html">Rooms</a>
+          </li>
+          <!-- Logo for Larger Screens -->
+          <li class="nav-item d-none d-lg-flex">
+            <a class="navbar-brand" href="index.php"><img src="{{ base_url }}images/logo-nav.png" alt="Hotel Urban Nest Logo"></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="booking.php">Reservation</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Facilities</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Gallery</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+

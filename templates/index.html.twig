@@ -1,0 +1,182 @@
+{% include 'header.html.twig' %}
+
+<main>
+
+<div class="container mt-4 mb-3">
+    <div class="text-center">
+            <h2>Welcome to Hotel Urban Nest</h2>
+    </div>
+    <div class="row justify-content-end">
+        <div class="col-3 weather-info">
+                <img src="http://openweathermap.org/img/w/{{ weather.icon }}.png" alt="{{ weather.description }}"> 
+                {{ weather.description }}, {{ weather.temperature }}°C,  {{ weather.date }}
+        </div>
+    </div>
+    <div class="container-fluid mt-4 mb-5">
+        <div id="carouselExampleIndicators" class="carousel slide mt-4" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                {% for i in 0..(carousel_images|length - 1) %}
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ i }}"
+                    {% if i == 0 %}class="active" aria-current="true"{% endif %}></button>
+                {% endfor %}
+            </div>
+            <div class="carousel-inner">
+                {% for image in carousel_images %}
+                <div class="carousel-item {% if loop.first %}active{% endif %}">
+                    <img src="{{ image.path }}" class="d-block w-100" alt="Hotel Urban Nest">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>{{ image.title }}</h5>
+                        <p>{{ image.description }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="search-container mt-8 mb-4">
+        <form action="prebooking_process.php" method="post" class="row g-3">
+          <div class="col-md-2">
+            <input type="date" class="form-control" name="checkin_date" placeholder="checkin_date">
+          </div>
+          <div class="col-md-2">
+            <input type="date" class="form-control" name="checkout_date" placeholder="checkout_date">
+          </div>
+          <div class="col-md-2">
+            <select name="room_type" class="form-select">
+              <option value="single">Single</option>
+              <option value="double">Double</option>
+              <option value="delux">Delux</option>
+            </select>
+          </div>
+          <div class="col-md-2">
+            <input type="number" class="form-control" name="adults" placeholder="Adults">
+          </div>
+          <div class="col-md-2">
+            <input type="number" class="form-control" name="children" placeholder="Children">
+          </div>
+          <div class="text-end col-md-2">
+            <button type="submit" class="btn custom-btn">Book Now</button>
+          </div>
+        </form>
+      </div>
+</div>
+
+<div class="container mt-6 mb-4">
+    <h3 class= "text-center mb-4">Resturants & bars</h3>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <img src="images/resturant.png" class="card-img-top" alt="resturant">
+                <div class="card-body">
+                    <h5 class="card-title">Resturant</h5>
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, molestiae!</p>
+                    <a href="#" class="btn custom-btn">Discover</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <img src="images/bar.png" class="card-img-top" alt="bar">
+                <div class="card-body">
+                    <h5 class="card-title">Bar</h5>
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, molestiae!</p>
+                    <a href="#" class="btn custom-btn">Discover</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <img src="images/lounge1.png" class="card-img-top" alt="lounge">
+                <div class="card-body">
+                    <h5 class="card-title">Lounge</h5>
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, molestiae!</p>
+                    <a href="#" class="btn custom-btn">Discover</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-6">
+    <h3 class= "text-center mb-4">Hotel Urban Nest in pictures</h3>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card">
+                <img src="images/hotel2.png" class="card-img-top" alt="lounge">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <img src="images/hotel3.png" class="card-img-top" alt="lounge">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <img src="images/lobby1.png" class="card-img-top" alt="lobby">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <img src="images/lounge2.png" class="card-img-top" alt="lounge">
+            </div>
+        </div> 
+       
+        
+    </div> 
+        <div class="row mt-3">
+        <div class="col-md-3">
+            <div class="card">
+                <img src="images/spa2.png" class="card-img-top" alt="lobby">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <img src="images/swimmingpool2.png" class="card-img-top" alt="swimmingpool">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <img src="images/swimming pool.png" class="card-img-top" alt="bar">
+            </div>        
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <img src="images/spa.png" class="card-img-top" alt="spa">
+            </div>
+        </div>
+              
+        <div class="text-center mt-4">
+            <a href="#" class="btn custom-btn">VIEW THE FULL GALLERY</a>
+        </div>
+    </div>      
+</div>
+
+<div class="container mt-6 container-fluid d-flex flex-row align-items-center">
+    <div>
+        <img src="images/logo-mid.png" alt="">
+    </div>
+    <p class="ms-auto">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae nostrum dolorum nulla necessitatibus rerum
+        laudantium corporis animi esse inventore unde ex illo consequuntur, quibusdam optio accusantium mollitia quod
+        modi beatae.
+    </p>
+</div>
+
+</main>
+
+{% include 'footer.html.twig' %}
+
+</body>
+</html>

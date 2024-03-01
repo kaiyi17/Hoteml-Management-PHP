@@ -1,0 +1,139 @@
+
+{% include 'header.html.twig' %}
+
+
+<main>
+
+    <div class="container mt-5 mb-3">
+
+        <div class="text-center">
+            <h2>Welcome to Hotel Urban Nest</h2>
+        </div>
+        <div class="row justify-content-end">
+            <div class="col-3 weather-info">
+                <img src="http://openweathermap.org/img/w/{{ weather.icon }}.png" alt="{{ weather.description }}"> 
+                {{ weather.description }}, {{ weather.temperature }}°C,  {{ weather.date }}
+            </div>
+        </div>
+
+       
+        {% if errors %}
+            <ul>
+                {% for error in errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <h3>Hotel Reservation</h3>
+        <form action="process_booking.php" method="post" id="bookingForm">
+            <input type="hidden" name="room_number" id="selectedRoomNumber" value="">
+            <div class="form-group mt-2">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" id="name" required name="name">
+            </div>
+            <div class="form-group mt-2">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" required name="email">
+            </div>
+            <div class="form-group mt-2">
+                <label for="phone">Phone:</label>
+                <input type="tel" class="form-control" id="phone" name="phone">
+            </div>
+            <div class="form-group mt-2">
+                <label for="check_in_date">Check-In Date:</label>
+                <input type="date" class="form-control" id="check_in_date" required name="check_in_date" value="{{ check_in_date }}">
+            </div>
+            <div class="form-group mt-2">
+                <label for="check_out_date">Check-Out Date:</label>
+                <input type="date" class="form-control" id="check_out_date" required name="check_out_date" value="{{ check_out_date }}">
+            </div>
+            <div class="form-group mt-2">
+                <label for="Adults">Adults:</label>
+                <input type="text" class="form-control" id="Adults" required name="Adults" value="{{ adults }}">
+            </div>
+            <div class="form-group mt-2">
+                <label for="Children">Children:</label>
+                <input type="text" class="form-control" id="Children" required name="Children" value="{{ children }}">
+            </div>
+            <div class="form-group mt-3">
+                <label>Room type:</label>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="single" name="room_type" value="single" required {{ room_type == 'single' ? 'checked' : '' }}>
+                    <label class="form-check-label" for="single">Single</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="double" name="room_type" value="double" required {{ room_type == 'double' ? 'checked' : '' }}>
+                    <label class="form-check-label" for="double">Double</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="delux" name="room_type" value="delux" required {{ room_type == 'delux' ? 'checked' : '' }}>
+                    <label class="form-check-label" for="delux">Delux</label>
+                </div>
+            </div>
+            <div class="row justify-content-between mt-4">
+                <div class="col-1">
+                    <button type="button" class="btn custom-btn" onclick="clearForm()">Clear</button>
+                </div>
+                <div class="col-1">
+                    <button type="submit" class="btn custom-btn">Submit</button>
+                </div>
+            </div>
+        </form>
+
+        <h3 class="mt-4">Rooms</h3>
+        <div class="row">
+            {% for room in rooms %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img src="../public/images/{{ room.image }}" class="card-img-top" alt="Room {{ room.number }} Image">
+                        <div class="card-body">
+                            <h5 class="card-title">Room Type: {{ room.type }}</h5>
+                            <p class="card-text">
+                                Rate: {{ room.rate }}<br>
+                                Description: {{ room.description }}<br>
+                                Max Adults: {{ room.maxAdults }}<br>
+                                Max Children: {{ room.maxChildren }}
+                            </p>
+                            <div class=" row justify-content-end mt-4">
+                                <div class="col-4">                            
+                                <button class="btn custom-btn book-room" onclick="selectRoom('{{ room.number }}')">Book Now</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</main>
+
+<script>
+    function selectRoom(roomNumber) {
+        document.getElementById('selectedRoomNumber').value = roomNumber;
+        // Optionally scroll to the booking form after selecting a room
+        window.location.hash = '#bookingForm';
+    }
+
+    function clearForm() {
+        const form = document.getElementById('bookingForm');
+        document.getElementById('name').value = '';
+        document.getElementById('email').value = '';
+        document.getElementById('phone').value = '';
+        document.getElementById('check_in_date').value = '';
+        document.getElementById('check_out_date').value = '';
+        document.getElementById('Adults').value = '';
+        document.getElementById('Children').value = '';
+        
+        const roomTypes = document.getElementsByName('room_type');
+        for (let i = 0; i < roomTypes.length; i++) {
+            roomTypes[i].checked = false; 
+        }
+    };
+</script>
+
+{% include 'footer.html.twig' %}
+
+</body>
+</html>

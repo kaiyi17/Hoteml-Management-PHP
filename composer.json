@@ -1,0 +1,14 @@
+{
+    "name": "carin/hotel-reservation",
+    "require": {
+        "twig/twig": "^3.7",
+        "pagerfanta/pagerfanta": "^4.2",
+        "doctrine/dbal": "^3.7",
+        "pagerfanta/doctrine-dbal-adapter": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Carin\\HotelReservation\\": "src/"
+        }
+    }
+}
