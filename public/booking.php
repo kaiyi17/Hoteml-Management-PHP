@@ -4,10 +4,7 @@ define('PROJECT_ROOT', realpath(dirname(__FILE__)));
 require_once '../vendor/autoload.php';
 require_once '../config/database.php';
 require_once '../src/model/Database.php';
-require_once '../src/model/weatherModel.php';
-
-$base_url = "http://localhost/finalproject/hotel-reservation/public/";
-
+require_once '../src/Bootstrap.php';
 
 session_start();
 
@@ -26,14 +23,6 @@ unset($_SESSION['form_data']);
 // Set up Twig environment
 $loader = new \Twig\Loader\FilesystemLoader('../templates');
 $twig = new \Twig\Environment($loader);
-
-$weatherModel = new WeatherModel();
-$weatherInfo = $weatherModel->getWeather("Montreal");
-
-$temperature = round($weatherInfo['main']['temp'] - 273.15);
-$weatherDescription = ucfirst($weatherInfo['weather'][0]['description']);
-$weatherIcon = $weatherInfo['weather'][0]['icon'];
-$currentDate = date("d/m/Y");
 
 // Get rooms from the database
 $rooms = [];
@@ -60,12 +49,6 @@ while ($row = $stmt->fetch()) {
 }
 
 $data = array_merge($booking_data, [
-  'weather' => [
-    'temperature' => $temperature,
-    'description' => $weatherDescription,
-    'icon' => $weatherIcon,
-    'date' => $currentDate
-  ],
   'rooms' => $rooms,
   'base_url' => $base_url,
 ]);

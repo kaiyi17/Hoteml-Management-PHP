@@ -3,8 +3,7 @@
 define('PROJECT_ROOT', realpath(dirname(__FILE__, 3)));
 
 require_once '../../vendor/autoload.php';
-
-$base_url = "http://localhost/finalproject/hotel-reservation/public/";
+require_once __DIR__ . '/../../src/bootstrap.php';
 
 $loader = new \Twig\Loader\FilesystemLoader(dirname(__DIR__, 2) . '/templates');
 $twig = new \Twig\Environment($loader);

@@ -5,21 +5,12 @@ define('PROJECT_ROOT', realpath(dirname(__FILE__)));
 require_once '../vendor/autoload.php';
 require_once '../config/database.php';
 require_once '../src/model/Database.php';
-require_once '../src/model/weatherModel.php';
+require_once '../src/Bootstrap.php';
 
-$base_url = "http://localhost/finalproject/hotel-reservation/public/";
 
 // Set up Twig environment
 $loader = new \Twig\Loader\FilesystemLoader('../templates');
 $twig = new \Twig\Environment($loader);
-
-$weatherModel = new WeatherModel();
-$weatherInfo = $weatherModel->getWeather("Montreal");
-
-$temperature = round($weatherInfo['main']['temp'] - 273.15);
-$weatherDescription = ucfirst($weatherInfo['weather'][0]['description']);
-$weatherIcon = $weatherInfo['weather'][0]['icon'];
-$currentDate = date("d/m/Y");
 
 $check_in_date = isset($check_in_date) ? $check_in_date : '';
 $check_out_date = isset($check_out_date) ? $check_out_date : '';
@@ -36,7 +27,6 @@ $_SESSION['prebooking'] = [
 ];
 
 
-
 $carousel_images = [
   ['path' => 'images/lobby11.png', 'title' => 'Urban Nest', 'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, repellendus?'],
   ['path' => 'images/lobby22.png', 'title' => 'Urban Nest', 'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, repellendus?'],
@@ -45,12 +35,6 @@ $carousel_images = [
 ];
 
 $data = [
-  'weather' => [
-    'temperature' => $temperature,
-    'description' => $weatherDescription,
-    'icon' => $weatherIcon,
-    'date' => $currentDate
-  ],
   'carousel_images' => $carousel_images,
   'base_url' => $base_url,
 ];

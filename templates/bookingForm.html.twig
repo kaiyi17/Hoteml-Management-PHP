@@ -9,13 +9,6 @@
         <div class="text-center">
             <h2>Welcome to Hotel Urban Nest</h2>
         </div>
-        <div class="row justify-content-end">
-            <div class="col-3 weather-info">
-                <img src="http://openweathermap.org/img/w/{{ weather.icon }}.png" alt="{{ weather.description }}"> 
-                {{ weather.description }}, {{ weather.temperature }}°C,  {{ weather.date }}
-            </div>
-        </div>
-
        
         {% if errors %}
             <ul>

@@ -6,6 +6,7 @@ require_once '../vendor/autoload.php';
 require_once '../config/database.php';
 require_once '../src/model/Database.php';
 require_once "../src/model/BookingModel.php";
+require_once '../src/Bootstrap.php';
 
 session_start();
 
